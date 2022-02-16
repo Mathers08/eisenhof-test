@@ -5,7 +5,7 @@ import {ColorPanel} from '../ColorPanel/ColorPanel'
 
 const baseColors = ['black', 'grey', 'white']
 const hoodieStyles = ['i-o', 'l-r', 'none']
-const colorNames = ['banana-apricot', 'mango-ibiza', 'pale pink-heavenly', 'pink happiness-caribbean', 'tarragon-poppy']
+const colorNames = ['banana-apricot', 'mango-ibiza', 'pale-pink-heavenly', 'pink-happiness-caribbean', 'tarragon-poppy']
 const coloredParts = ['all', 'hood-only', 'pocket-only']
 
 export const App = () => {
@@ -41,14 +41,7 @@ export const App = () => {
       }
     }
   }
-  const moveColorName = (direction: 'left' | 'right') => {
-    const index = colorNames.indexOf(colorName)
-    if (direction === 'left') {
-      setColorName(colorNames[index - 1])
-    } else {
-      setColorName(colorNames[index + 1])
-    }
-  }
+  const changeColor = (color: string) => setColorName(color);
   const moveColoredPart = (direction: 'left' | 'right') => {
     const index = coloredParts.indexOf(coloredPart)
     if (direction === 'left') {
@@ -84,7 +77,7 @@ export const App = () => {
             ? <FaAngleRight size={40} onClick={() => moveColoredPart('right')}/> : <EmptyDiv/>}
         </div>
       </div>
-      <ColorPanel/>
+      <ColorPanel colorNames={colorNames} changeColor={changeColor}/>
     </>
   )
 }
