@@ -2,10 +2,10 @@ import styles from './ColorPanel.module.scss';
 
 interface ColorPanelProps {
   colorNames: string[],
-  changeColor: Function
+  changeCircleColor: Function
 }
 
-export const ColorPanel = ({colorNames, changeColor}: ColorPanelProps) => {
+const ColorPanel = ({colorNames, changeCircleColor}: ColorPanelProps) => {
   const colors = [
     {
       'left': '#dec663',
@@ -36,9 +36,11 @@ export const ColorPanel = ({colorNames, changeColor}: ColorPanelProps) => {
           key={color.left}
           className={styles.circle}
           style={{background: `linear-gradient(to left, ${color.left} 50%, ${color.right} 50%)`}}
-          onClick={() => changeColor(colorNames[index])}
+          onClick={() => changeCircleColor(colorNames[index])}
         />
       ))}
     </div>
   );
 };
+
+export default ColorPanel;

@@ -1,3 +1,2 @@
-export * from './App/App'
-export * from './Hoodie/Hoodie'
-export * from './ColorPanel/ColorPanel'
+export {default as Hoodie} from './Hoodie/Hoodie';
+export {default as ColorPanel} from './ColorPanel/ColorPanel';
