@@ -29,3 +29,24 @@ html, body, #app {
   display: flex;
   justify-content: center;
 }
+
+.container {
+  display: flex;
+  .arrows {
+    min-width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 390px;
+  }
+}
+.imageBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 490px;
+
+  .image {
+    width: 70%;
+  }
+}

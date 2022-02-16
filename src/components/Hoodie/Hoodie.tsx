@@ -1,8 +1,6 @@
-import {
-  useEffect,
-  useState,
-} from 'react'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+/*
+import {useEffect, useState,} from 'react'
+import {FaAngleLeft, FaAngleRight} from 'react-icons/fa'
 import styles from './Hoodie.module.scss'
 
 interface HoodieProps {
@@ -17,15 +15,15 @@ interface HoodieProps {
 }
 
 export const Hoodie = ({
-  baseColor,
-  hoodieStyle,
-  colorName,
-  coloredPart,
-  changeBaseColor,
-  moveHoodieStyle,
-  moveColorName,
-  moveColoredPart,
-}: HoodieProps) => {
+                         baseColor,
+                         hoodieStyle,
+                         colorName,
+                         coloredPart,
+                         changeBaseColor,
+                         moveHoodieStyle,
+                         moveColorName,
+                         moveColoredPart,
+                       }: HoodieProps) => {
   const [src, setSrc] = useState<string>()
 
   useEffect(() => {
@@ -45,3 +43,15 @@ export const Hoodie = ({
     </div>
   )
 }
+*/
+import React from 'react';
+
+const Hoodie = () => {
+  return (
+    <div>
+
+    </div>
+  );
+};
+
+export default Hoodie;

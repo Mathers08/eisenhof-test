@@ -1,14 +1,7 @@
-import './App.module.scss'
-import {
-  useEffect,
-  useState,
-} from 'react'
-import {
-  FaAngleLeft,
-  FaAngleRight,
-} from 'react-icons/fa'
-import { ColorPanel } from '../ColorPanel/ColorPanel'
-import styles from '../Hoodie/Hoodie.module.scss'
+import styles from './App.module.scss'
+import {useEffect, useState,} from 'react'
+import {FaAngleLeft, FaAngleRight,} from 'react-icons/fa'
+import {ColorPanel} from '../ColorPanel/ColorPanel'
 
 const baseColors = ['black', 'grey', 'white']
 const hoodieStyles = ['i-o', 'l-r', 'none']
@@ -20,10 +13,10 @@ export const App = () => {
   const [hoodieStyle, setHoodieStyle] = useState<string>(hoodieStyles[0])
   const [colorName, setColorName] = useState<string>(colorNames[0])
   const [coloredPart, setColoredPart] = useState<string>(coloredParts[0])
-  const [src, setSrc] = useState<string>()
+  const [img, setImg] = useState<string>()
 
   useEffect(() => {
-    setSrc(require(`../../images/${colorName}/b__${baseColor}_${hoodieStyle}_${colorName}_${coloredPart}.png`))
+    setImg(require(`../../images/${colorName}/b__${baseColor}_${hoodieStyle}_${colorName}_${coloredPart}.png`))
   }, [baseColor, hoodieStyle, colorName, coloredPart])
 
   const moveBaseColor = () => {
@@ -38,6 +31,9 @@ export const App = () => {
     const index = hoodieStyles.indexOf(hoodieStyle)
     if (direction === 'left') {
       setHoodieStyle(hoodieStyles[index - 1])
+      if (index === 2) {
+        setColoredPart(coloredParts[0])
+      }
     } else {
       setHoodieStyle(hoodieStyles[index + 1])
       if (index === 1) {
@@ -61,18 +57,32 @@ export const App = () => {
       setColoredPart(coloredParts[index + 1])
     }
   }
-  console.log(src)
+  console.log(img)
+  const conditionLeftHS = hoodieStyles.indexOf(hoodieStyle) !== 0
+  const conditionLeftCP = coloredParts.indexOf(coloredPart) !== 0 && hoodieStyle !== 'none'
+  const conditionRightHS = hoodieStyles.indexOf(hoodieStyle) !== hoodieStyles.length - 1;
+  const conditionRightCP = coloredParts.indexOf(coloredPart) !== coloredParts.length - 2 && hoodieStyle !== 'none';
+
+  const EmptyDiv = () => <div style={{width: 40, height: 40}}/>
+
   return (
     <>
       <div className={styles.container}>
-        {!(hoodieStyles.indexOf(hoodieStyle) === 0) && <FaAngleLeft onClick={() => moveHoodieStyle('left')}/>}
-        <img
-          onClick={() => moveBaseColor()}
-          className={styles.image}
-          src={src}
-          alt="Толстовка"
-        />
-        {!(hoodieStyles.indexOf(hoodieStyle) === hoodieStyles.length - 1) && <FaAngleRight onClick={() => moveHoodieStyle('right')}/>}
+        <div className={styles.arrows}>
+          {conditionLeftHS
+            ? <FaAngleLeft size={40} onClick={() => moveHoodieStyle('left')}/> : <EmptyDiv/>}
+          {conditionLeftCP
+            ? <FaAngleLeft size={40} onClick={() => moveColoredPart('left')}/> : <EmptyDiv/>}
+        </div>
+        <div className={styles.imageBlock}>
+          <img onClick={() => moveBaseColor()} className={styles.image} src={img} alt="Hoodie"/>
+        </div>
+        <div className={styles.arrows}>
+          {conditionRightHS
+            ? <FaAngleRight size={40} onClick={() => moveHoodieStyle('right')}/> : <EmptyDiv/>}
+          {conditionRightCP
+            ? <FaAngleRight size={40} onClick={() => moveColoredPart('right')}/> : <EmptyDiv/>}
+        </div>
       </div>
       <ColorPanel/>
     </>
