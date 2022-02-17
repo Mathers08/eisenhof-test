@@ -1,16 +1,56 @@
-.footer {
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.colorPanel {
   position: fixed;
   inset: auto 0 0 0;
-  height: 14vh;
   background: black;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
-  .circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  .slider {
+    height: 14vh;
+    width: 360px;
+
+    .arrow {
+      color: #fff;
+      position: absolute;
+      cursor: pointer;
+      z-index: 10;
+      svg {
+        transition: color .3s;
+        :hover {
+          color: #68edff;
+        }
+      }
+    }
+
+    .next {
+      right: 0;
+      top: 40%;
+    }
+
+    .prev {
+      left: 0;
+      top: 40%;
+    }
+
+    .slide {
+      transform: scale(.2);
+      opacity: .5;
+      transition: transform .3s;
+      .circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+
+    .active {
+      transform: scale(1.1);
+      opacity: 1;
+    }
   }
 }
 
