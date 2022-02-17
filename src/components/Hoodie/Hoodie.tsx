@@ -50,7 +50,7 @@ const Hoodie = ({
       <div className={styles.imageBlock}>
         <img onClick={() => changeBaseColor()} className={styles.image} src={image} alt="Hoodie"/>
       </div>
-      
+
       <div className={styles.arrows}>
         {conditionRightHS
           ? <FaAngleRight size={40} onClick={() => changeHoodieStyle('right')}/> : <EmptyDiv/>}
