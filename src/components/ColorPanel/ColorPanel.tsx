@@ -47,25 +47,26 @@ const ColorPanel = ({colorNames, changeCircleColor}: ColorPanelProps) => {
     )
   }
   const settings = {
-    infinite: true,
     speed: 300,
     centerMode: true,
-    centerPadding: '0',
+    centerPadding: '10',
+    slidesToShow: 3,
     nextArrow: <NextArrow/>,
     prevArrow: <PrevArrow/>,
-    beforeChange: (current: number, next: number) => setCircleIndex(next)
+    beforeChange: (current: number, next: number) => {
+      setCircleIndex(next)
+      changeCircleColor(colorNames[next])
+    }
   }
 
   return (
     <div className={styles.colorPanel}>
       <Slider className={styles.slider} {...settings}>
         {colors.map((color, index) => (
-          <div className={index === circleIndex ? `${styles.slide} ${styles.active}` : `${styles.slide}`}>
-            <div
-              key={color.left}
-              className={styles.circle}
-              style={{background: `linear-gradient(to left, ${color.left} 50%, ${color.right} 50%)`}}
-              onClick={() => changeCircleColor(colorNames[index])}
+          <div key={color.left}
+               className={index === circleIndex ? `${styles.slide} ${styles.active}` : `${styles.slide}`}>
+            <div className={styles.circle}
+                 style={{background: `linear-gradient(to left, ${color.left} 50%, ${color.right} 50%)`}}
             />
           </div>
         ))}
